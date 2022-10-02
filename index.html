@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>dateCAL</title>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/vite.svg"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <script
+      type="module"
+      src="/main.js"
+    ></script>
+  </head>
+  <body>
+    <main class="container">
+      <div
+        class="alert"
+        id="input-container"
+      ></div>
+
+      <div class="grid">
+        <article>
+          <h1 class="article__title">CalcDate</h1>
+          <p class="article__text">
+            Calcula la diferencia en días entre dos fechas 🧐
+          </p>
+          <form id="formFechas">
+            <input
+              type="datetime-local"
+              name="fechaInicial"
+              id="fechaInicial"
+            />
+            <input
+              type="datetime-local"
+              name="fechaFinal"
+              id="fechaFinal"
+            />
+
+            <button
+              id="btnCalcular"
+              type="submit"
+              aria-busy="false"
+            >
+              Calcular
+            </button>
+          </form>
+        </article>
+      </div>
+    </main>
+    <footer class="footer">
+      Hecho con ❤️ por
+      <a
+        target="_blank"
+        href="https://github.com/mavuriel"
+      >
+        mavuriel
+      </a>
+    </footer>
+  </body>
+</html>

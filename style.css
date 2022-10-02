@@ -1,0 +1,42 @@
+.alert{
+  background-color: #9e210e;
+  border-radius: 5px;
+  padding: 1rem;
+  cursor: help;
+}
+
+.alert p{
+  font-size: 13px;
+  text-align: center;
+  margin: 0;
+}
+
+.alert span{
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.article__title{
+  margin: 0;
+  text-align: center;
+}
+
+.article__text{
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.footer{
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+@media (prefers-color-scheme: light) {
+  .alert{
+    background-color: #e22103ea;
+  }
+  .alert p{
+    color: cornsilk;
+  }
+}
