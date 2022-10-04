@@ -11,12 +11,51 @@ const fechaFinal = document.querySelector('#fechaFinal')
 const formFechas = document.querySelector('#formFechas')
 const btnCalcular = document.querySelector('#btnCalcular')
 
+const validateDates = (dates, operationType) => {
+  const errors = []
+
+  // TODO: si la fecha inicial es mayor a la fecha final
+  // TODO: si la fecha final es menor a la fecha inicial
+
+  switch (operationType) {
+    case 'daysBetween':
+      if (dates.fechaInicial.value === '') errors.push('Sin fecha inicial 🧐')
+      if (dates.fechaFinal.value === '') errors.push('Sin fecha final 🤨')
+      break
+
+    default:
+      break
+  }
+
+  const error = errors.length > 0 && true
+
+  console.log({ error, errors })
+
+  return { error, errors }
+}
+
 formFechas.addEventListener('submit', e => {
   e.preventDefault()
-  console.log(btnCalcular)
+
+  const elementosForm = e.target.elements
+  const operationType = 'daysBetween'
+
+  const { error, errors } = validateDates(elementosForm, operationType)
+
+  const inputsForm = [...elementosForm].slice(0, -1)
+
+  if (error) {
+    inputsForm.forEach((input, index) => {
+      input.setAttribute('aria-invalid', 'true')
+
+      const errorMessage = input.nextElementSibling.firstElementChild
+      errorMessage.innerText = errors[index]
+      errorMessage.classList.add('error__message--show')
+    })
+  }
+
   btnCalcular.setAttribute('aria-busy', 'true')
   btnCalcular.toggleAttribute('disabled')
-  console.log(fechaInicial.value, fechaFinal.value)
 
   setTimeout(() => {
     btnCalcular.setAttribute('aria-busy', 'false')
