@@ -1,7 +1,7 @@
 .alert{
   background-color: #9e210e;
   border-radius: 5px;
-  padding: 1rem;
+  padding: 0.5rem 0;
   cursor: help;
 }
 
@@ -25,6 +25,31 @@
   margin-bottom: 2rem;
   text-align: center;
   font-size: 0.8rem;
+}
+
+.form__label{
+  margin: 0;
+}
+
+.form__input{
+  margin: 0.5rem 0 0 !important;
+}
+
+.form__error{
+  font-size: 0.75rem;
+  margin: 0.25rem 0;
+  min-height: 1.5rem;
+  height: 1.5rem;
+  max-height: 1.5rem;
+}
+
+.error__message{
+  display: none;
+}
+
+.error__message--show{
+  display: inline-block;
+  color: #b42813;
 }
 
 .footer{
