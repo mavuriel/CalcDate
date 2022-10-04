@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>dateCAL</title>
+    <title>CalcDate</title>
     <meta charset="UTF-8" />
     <link
       rel="icon"
@@ -18,12 +18,13 @@
     ></script>
   </head>
   <body>
+    <!-- TODO: cambiar el tema de la pagina -->
+    <!-- TODO: hacer desplegable el mensaje de resultado -->
+    <div
+      class="alert"
+      id="input-container"
+    ></div>
     <main class="container">
-      <div
-        class="alert"
-        id="input-container"
-      ></div>
-
       <div class="grid">
         <article>
           <h1 class="article__title">CalcDate</h1>
@@ -31,17 +32,36 @@
             Calcula la diferencia en días entre dos fechas 🧐
           </p>
           <form id="formFechas">
+            <label
+              class="form__label"
+              for="fechaInicial"
+            >
+              Fecha inicial
+            </label>
             <input
+              class="form__input"
               type="datetime-local"
               name="fechaInicial"
               id="fechaInicial"
             />
+            <div class="form__error">
+              <span class="error__message">&#32;</span>
+            </div>
+            <label
+              class="form__label"
+              for="fechaFinal"
+            >
+              Fecha final
+            </label>
             <input
+              class="form__input"
               type="datetime-local"
               name="fechaFinal"
               id="fechaFinal"
             />
-
+            <div class="form__error">
+              <span class="error__message">&#32;</span>
+            </div>
             <button
               id="btnCalcular"
               type="submit"
