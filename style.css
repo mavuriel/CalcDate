@@ -1,41 +1,94 @@
-.alert{
-  background-color: #9e210e;
+@media (prefers-color-scheme: light) {
+  * {
+    --danger: #e22103ea;
+    --white: cornsilk;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  * {
+    --danger: #9e210e;
+    --white: white;
+  }
+}
+
+form {
+  margin: 0;
+  height: 100%;
+}
+
+.alert {
+  display: none;
+  background-color: var(--danger);
   border-radius: 5px;
   padding: 0.5rem 0;
   cursor: help;
 }
 
-.alert p{
+.alert--show {
+  display: block;
+}
+
+.alert__text {
   font-size: 13px;
   text-align: center;
   margin: 0;
+  color: var(--white);
 }
 
-.alert span{
+.alert span {
   font-weight: bold;
   text-decoration: underline;
 }
 
-.article__title{
+.container__article {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.article__title {
   margin: 0;
   text-align: center;
 }
 
-.article__text{
+.article__text {
   margin-bottom: 2rem;
   text-align: center;
   font-size: 0.8rem;
 }
 
-.form__label{
+.article__response {
+  background-color: #11191f;
+  height: 100%;
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.response__clipboard {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.button__size_sm {
+  width: 50%;
+  padding: 0.5rem 0.5rem;
+  font-size: 0.6rem;
+}
+
+.form__label {
   margin: 0;
 }
 
-.form__input{
+.form__input {
   margin: 0.5rem 0 0 !important;
 }
 
-.form__error{
+.form__error {
   font-size: 0.75rem;
   margin: 0.25rem 0;
   min-height: 1.5rem;
@@ -43,25 +96,29 @@
   max-height: 1.5rem;
 }
 
-.error__message{
+.error__message {
   display: none;
 }
 
-.error__message--show{
+.error__message--show {
   display: inline-block;
   color: #b42813;
 }
 
-.footer{
+.footer {
   text-align: center;
   font-size: 0.8rem;
+  min-height: 20vh;
 }
 
-@media (prefers-color-scheme: light) {
-  .alert{
-    background-color: #e22103ea;
+@media (min-width: 1200px) {
+  .container {
+    padding: 1.5rem 0;
+    height: 90vh;
   }
-  .alert p{
-    color: cornsilk;
+
+  .container__article {
+    margin: 0;
+    padding: 1.5rem 3rem 1rem;
   }
 }
