@@ -1,80 +1,49 @@
 import '@picocss/pico'
 import './style.css'
-import Bowser from 'bowser'
-import dayjs from 'dayjs'
+import checkBrowser from './checkBrowser'
+import validateDates from './validateDates'
+import { clearErrorMessages, setButtonState } from './helpers'
 
-const inputContainer = document.querySelector('#input-container')
-
-const fechaInicial = document.querySelector('#fechaInicial')
-const fechaFinal = document.querySelector('#fechaFinal')
+checkBrowser()
 
 const formFechas = document.querySelector('#formFechas')
 const btnCalcular = document.querySelector('#btnCalcular')
 
-const validateDates = (dates, operationType) => {
-  const errors = []
-
-  // TODO: si la fecha inicial es mayor a la fecha final
-  // TODO: si la fecha final es menor a la fecha inicial
-
-  switch (operationType) {
-    case 'daysBetween':
-      if (dates.fechaInicial.value === '') errors.push('Sin fecha inicial 🧐')
-      if (dates.fechaFinal.value === '') errors.push('Sin fecha final 🤨')
-      break
-
-    default:
-      break
-  }
-
-  const error = errors.length > 0 && true
-
-  console.log({ error, errors })
-
-  return { error, errors }
-}
-
 formFechas.addEventListener('submit', e => {
   e.preventDefault()
 
-  const elementosForm = e.target.elements
+  setButtonState({ button: btnCalcular, stateType: 'loading' })
+
+  const elementosForm = [...e.target.elements].slice(0, -1)
+
+  clearErrorMessages({ elementos: elementosForm })
+
   const operationType = 'daysBetween'
 
-  const { error, errors } = validateDates(elementosForm, operationType)
-
-  const inputsForm = [...elementosForm].slice(0, -1)
+  const { error, errors, data } = validateDates(elementosForm, operationType)
 
   if (error) {
-    inputsForm.forEach((input, index) => {
-      input.setAttribute('aria-invalid', 'true')
-
-      const errorMessage = input.nextElementSibling.firstElementChild
-      errorMessage.innerText = errors[index]
+    for (const [key, value] of errors) {
+      if (value === null) continue
+      const inputWithError = elementosForm.find(element => element.id === key)
+      inputWithError.setAttribute('aria-invalid', 'true')
+      const errorMessage = inputWithError.nextElementSibling.firstElementChild
+      for (const message of value) {
+        errorMessage.insertAdjacentText('beforeend', message)
+      }
       errorMessage.classList.add('error__message--show')
-    })
+    }
+
+    setTimeout(() => {
+      setButtonState({ button: btnCalcular, stateType: 'ready' })
+    }, 500)
+
+    return
   }
 
-  btnCalcular.setAttribute('aria-busy', 'true')
-  btnCalcular.toggleAttribute('disabled')
+  console.log(data)
 
   setTimeout(() => {
-    btnCalcular.setAttribute('aria-busy', 'false')
-    btnCalcular.toggleAttribute('disabled')
+    setButtonState({ button: btnCalcular, stateType: 'ready' })
   }, 500)
 })
-
-const browser = Bowser.getParser(window.navigator.userAgent)
-const { name: browserName } = browser.getBrowser()
-
-if (browserName === 'Firefox') {
-  const htmlAlert = `
-    <p>Tu navegador es <span>${browserName}</span> 😰</p>
-    <p>
-      Por lo cual los selectores de fecha y hora <span>no se muestran correctamente</span> 😤
-    </p>
-    <p>
-      Por favor teclea las horas si las necesitas, en caso contrario serán tomadas como <span>00:00</span> 😎
-    </p>
-  `
-  inputContainer.insertAdjacentHTML('beforeend', htmlAlert)
-}
