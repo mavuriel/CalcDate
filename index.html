@@ -18,19 +18,21 @@
     ></script>
   </head>
   <body>
-    <!-- TODO: cambiar el tema de la pagina -->
-    <!-- TODO: hacer desplegable el mensaje de resultado -->
     <div
       class="alert"
-      id="input-container"
+      id="alert"
     ></div>
     <main class="container">
       <div class="grid">
-        <article>
+        <div>
           <h1 class="article__title">CalcDate</h1>
           <p class="article__text">
             Calcula la diferencia en días entre dos fechas 🧐
           </p>
+        </div>
+      </div>
+      <div class="grid">
+        <article class="container__article">
           <form id="formFechas">
             <label
               class="form__label"
@@ -40,7 +42,7 @@
             </label>
             <input
               class="form__input"
-              type="datetime-local"
+              type="date"
               name="fechaInicial"
               id="fechaInicial"
             />
@@ -55,7 +57,7 @@
             </label>
             <input
               class="form__input"
-              type="datetime-local"
+              type="date"
               name="fechaFinal"
               id="fechaFinal"
             />
@@ -70,6 +72,19 @@
               Calcular
             </button>
           </form>
+        </article>
+        <article class="container__article">
+          <div class="article__response">
+            <p class="response__text">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Voluptatem natus ullam unde incidunt deserunt distinctio deleniti!
+              Natus sapiente debitis eaque explicabo nulla omnis! Cupiditate
+              optio labore possimus accusantium quae! Error!
+            </p>
+            <button class="outline button__size_sm response__clipboard">
+              Copiar al portapapeles 🤓
+            </button>
+          </div>
         </article>
       </div>
     </main>
